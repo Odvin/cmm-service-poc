@@ -1,0 +1,30 @@
+---
+title: Specified ERD for the CMM Service
+---
+erDiagram
+  COMPANY ||--O{ CREW : controls
+  CREW ||--O{ MEMBER : contains
+  MEMBER }O--|| PERSON  : is
+  MEMBER }O--|| ROLE  : has
+  PERSON ||--O{ ATTESTATION  : gets
+  PERSON ||--O{ VERIFICATION  : gets
+  ATTESTATION }O--|| SKILL  : provides
+  SKILL ||--O{ CATALOG  : belongs
+  CATALOG }O--|| CERTIFICATE  : contains
+  VERIFICATION }O--|| CERTIFICATE  : grants
+  CERTIFICATE }|--|| COURSE : belongs
+  COMPANY {
+    INT id PK "Auto incremented"
+    VARCHAR title "NOT NULL"
+    CHAR_2 country "NOT NULL. ISO A-2 code"
+    BOOLEAN active "NOT NULL. DEFAULT false"
+    DATE created_at "NOT NULL"
+    VARCHAR created_by "NOT NULL. User ID"
+    DATE updated_at "NOT NULL, DEFAULT NOW"
+    VARCHAR updated_by "NOT NULL. User ID"
+  }
+  CREW {
+    INT id PK "Auto incremented"
+    INT company_id FK "NOT NULL"
+    VARCHAR title "NOT NULL"
+  }

@@ -1,0 +1,15 @@
+---
+title: Generalized ERD for the CMM Service
+---
+erDiagram
+  COMPANY ||--O{ CREW : controls
+  CREW ||--O{ MEMBER : contains
+  MEMBER }O--|| PERSON  : is
+  MEMBER }O--|| ROLE  : has
+  PERSON ||--O{ ATTESTATION  : gets
+  PERSON ||--O{ VERIFICATION  : gets
+  ATTESTATION }O--|| SKILL  : provides
+  SKILL ||--O{ CATALOG  : belongs
+  CATALOG }O--|| CERTIFICATE  : contains
+  VERIFICATION }O--|| CERTIFICATE  : grants
+  CERTIFICATE }|--|| COURSE : belongs
